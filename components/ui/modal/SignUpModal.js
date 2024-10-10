@@ -8,9 +8,9 @@ const SignUpModal = () => {
     // const handleClose = () => setIsOpen(false)
     // const handleOpen = () => setIsOpen(true)
 
-    const isOpen = useSelector(state => state.modals.SignUpModal)
+    const isOpen = useSelector(state => state.modal.signUpModalOpen)
     console.log(isOpen)
-    
+
 
   return (
     <>
