@@ -28,7 +28,7 @@ export function TweetHeader() {
             <div className="w-1 h-1 bg-gray-500 rounded-full"></div>
             <span>2 hours ago</span>
           </div>
-            <span>New shit has come to light, man!</span>
+            <span>...it really tied the room together.</span>
         </div>
       </div>
     </>
