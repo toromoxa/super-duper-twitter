@@ -20,6 +20,7 @@ export async function getServerSideProps(context) {
     text: data.tweet,
     comments: data.comments || null,
     timestamp: JSON.stringify(data.timestamp.toDate()),
+    image: data.image || null
   };
 
   return {
@@ -55,6 +56,13 @@ export default function CommentsPage({ tweetData }) {
                   <Moment fromNow>{JSON.parse(tweetData.timestamp)}</Moment>
                 </div>
                 <span className="text-2xl">{tweetData.text}</span>
+
+                {tweetData.image && (
+                  <img
+                    src={tweetData.image}
+                    className="object-cover border border-gray-700 rounded-md mt-3 max-h-80"
+                  />
+                )}
               </div>
             </div>
           </div>
@@ -64,27 +72,25 @@ export default function CommentsPage({ tweetData }) {
                 src={user.photoUrl}
                 className="w-12 h-12 rounded-full object-cover"
               />
-              <h1 className="text-2xl text-gray-500 ">
-                Tweet your reply
-              </h1>
+              <h1 className="text-2xl text-gray-500 ">Tweet your reply</h1>
             </div>
             <button className="bg-[#1d9bf0] rounded-full px-4 py-1.5 disabled:opacity-50">
               Tweet
             </button>
           </div>
-          {tweetData.comments?.map(comment => (
+          {tweetData.comments?.map((comment) => (
             <div className="border-b border-gray-700">
-            <div className="flex space-x-3 p-3 gap-2">
-              <img src={comment.photoUrl} className="h-11 rounded-full" />
-              <div>
-                <div className="text-gray-500 flex items-center space-x-2 mb-1">
-                  <h1 className="text-white font-bold">{comment.name}</h1>
-                  <span>@{comment.username}</span>
+              <div className="flex space-x-3 p-3 gap-2">
+                <img src={comment.photoUrl} className="h-11 rounded-full" />
+                <div>
+                  <div className="text-gray-500 flex items-center space-x-2 mb-1">
+                    <h1 className="text-white font-bold">{comment.name}</h1>
+                    <span>@{comment.username}</span>
+                  </div>
+                  <span>{comment.comment}</span>
                 </div>
-                <span>{comment.comment}</span>
               </div>
             </div>
-          </div>
           ))}
         </div>
         <Trending />
